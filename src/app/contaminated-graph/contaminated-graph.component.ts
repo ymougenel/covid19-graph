@@ -60,7 +60,6 @@ export class ContaminatedGraphComponent implements OnInit {
     }
 
 
-
     createGraph() {
         console.log("dates:");
         console.log(this.dates);
@@ -70,7 +69,7 @@ export class ContaminatedGraphComponent implements OnInit {
         let yaxis = [];
         let formatter = this.formatterService;
         this.regions.forEach(function (region: Region) {
-            yaxis.push({data: region.values, label: formatter.formatLabel(region), hidden: true})
+            yaxis.push({data: region.values, label: formatter.formatLabel(region), hidden: formatter.isHidden(region)})
         });
         this.lineChartData = yaxis;
         // console.log(this.lineChartData);
