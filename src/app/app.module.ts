@@ -11,6 +11,7 @@ import {ChartsModule} from "ng2-charts";
 import { CoreModule } from './core/core.module';
 import { HttpClientModule } from '@angular/common/http';
 import {FormatterService} from "./core/services/formatter.service";
+import {MapperService} from "./core/services/mapper.service";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import {FormatterService} from "./core/services/formatter.service";
     CoreModule,
     HttpClientModule,
   ],
-  providers: [MessageService, DataService, FormatterService],
+  providers: [MessageService, DataService, FormatterService, MapperService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,22 +1,22 @@
 <div class="contaminated-dashboard" style="display: flex">
-    <div style="display: block;">
-      <canvas id="line"
-              class="chart chart-line"
-              chart-data="data"
-              chart-labels="labels"
-              chart-series="series"
-              chart-options="options"
-              chart-dataset-override="datasetOverride"
-              chart-click="onClick">
-      </canvas>
-      <canvas baseChart width="1500" height="1000"
-              [datasets]="lineChartData"
-              [labels]="lineChartLabels"
-              [options]="lineChartOptions"
-              [colors]="lineChartColors"
-              [legend]="lineChartLegend"
-              [chartType]="lineChartType"
-              (chartHover)="chartHovered($event)"
-              (chartClick)="chartClicked($event)"></canvas>
+    <div *ngIf="dataAvailable" style="display: block;">
+        <canvas id="line"
+                class="chart chart-line"
+                chart-data="data"
+                chart-labels="labels"
+                chart-series="series"
+                chart-options="options"
+                chart-dataset-override="datasetOverride"
+                chart-click="onClick">
+        </canvas>
+        <canvas baseChart width="1500" height="1000"
+                [datasets]="lineChartData"
+                [labels]="lineChartLabels"
+                [options]="lineChartOptions"
+                [colors]="lineChartColors"
+                [legend]="lineChartLegend"
+                [chartType]="lineChartType"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)"></canvas>
     </div>
 </div>

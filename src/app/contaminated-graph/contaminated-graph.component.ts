@@ -5,6 +5,7 @@ import {Location} from '@angular/common';
 import {frConfirmedCsv} from "../mock/covid_fr_confirmed";
 import {Region} from "../models/Region";
 import {FormatterService} from "../core/services/formatter.service";
+import {MapperService} from "../core/services/mapper.service";
 
 @Component({
     selector: 'covid-contaminated-graph',
@@ -14,66 +15,41 @@ import {FormatterService} from "../core/services/formatter.service";
 export class ContaminatedGraphComponent implements OnInit {
 
     regions: Region[] = [];
-    dates: String[] = [];
-    public lineChartData: Array<any>;
-    public lineChartLabels: Array<any>;
-
+    dates: Date[] = [];
+    public lineChartData: Array<any>= [];
+    public lineChartLabels: Array<any>= [];
+    dataAvailable = false;
     constructor(
         private route: ActivatedRoute,
         private dataService: DataService,
         private formatterService: FormatterService,
+        private mapperService: MapperService,
         private location: Location) {
     }
 
     ngOnInit() {
-        this.getConfirmedCases();
+        this.fetchData();
     }
 
-    getConfirmedCases(): void {
+    fetchData(): void {
         this.dataService.getMockedConfirmedCases()
-            .subscribe(confirmedCsv => {
-
-                let lines = confirmedCsv.split("\n");
-                console.log(lines);
-                this.dates = this.mapDates(lines[0]);
-                for (let i = 1; i < lines.length; i++) {
-                    this.regions.push(this.mapRegion(lines[i]));
-                }
+            .subscribe(csv => {
+                this.dates = this.mapperService.mapCsvToDates(csv);
+                this.regions = this.mapperService.mapCsvToRegions(csv);
                 this.createGraph();
             });
     }
 
-    mapRegion(line): Region {
-        let region = new Region();
-        line = line.split(',');
-        region.province = line[0];
-        region.country = line[1];
-        region.latitude = line[2];
-        region.longitude = line[3];
-        region.values = line.slice(4, line.length);
-        return region;
-    }
-
-    mapDates(line): string[] {
-        line = line.split(',').slice(4, line.length);
-        return line;
-    }
-
 
     createGraph() {
-        console.log("dates:");
-        console.log(this.dates);
-        console.log("regions:");
-        console.log(this.regions);
-        this.lineChartLabels = this.dates.map((d) => this.formatterService.formatDate(d.toString()));
+        this.lineChartLabels = this.dates;
         let yaxis = [];
         let formatter = this.formatterService;
         this.regions.forEach(function (region: Region) {
             yaxis.push({data: region.values, label: formatter.formatLabel(region), hidden: formatter.isHidden(region)})
         });
         this.lineChartData = yaxis;
-        // console.log(this.lineChartData);
-        // console.log(this.lineChartLabels);
+        this.dataAvailable = true;
     }
 
     public lineChartOptions: any = {
