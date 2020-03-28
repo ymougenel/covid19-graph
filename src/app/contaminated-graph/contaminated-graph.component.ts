@@ -19,6 +19,7 @@ export class ContaminatedGraphComponent implements OnInit {
     public lineChartData: Array<any>= [];
     public lineChartLabels: Array<any>= [];
     dataAvailable = false;
+    status: String;
     constructor(
         private route: ActivatedRoute,
         private dataService: DataService,
@@ -32,7 +33,7 @@ export class ContaminatedGraphComponent implements OnInit {
     }
 
     fetchData(): void {
-        const status = this.route.snapshot.paramMap.get('status');
+        this.status = this.route.snapshot.paramMap.get('status');
         this.dataService.getData(status)
             .subscribe(csv => {
                 this.dates = this.mapperService.mapCsvToDates(csv);

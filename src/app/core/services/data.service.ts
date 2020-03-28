@@ -40,7 +40,7 @@ export class DataService {
             return this.getConfirmedCases();
         } else if (status == "deaths") {
             return this.getDeaths();
-        } else if (status="recovered") {
+        } else if (status == "recovered") {
             return this.getRecovered();
         }
         else {
