@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import {ContaminatedGraphComponent} from "./contaminated-graph/contaminated-graph.component";
 
 const routes: Routes = [
-  { path: '', redirectTo: '/contaminated/France', pathMatch: 'full' },
-  { path: 'contaminated/:id', component: ContaminatedGraphComponent },
+  { path: '', redirectTo: '/covid19/confirmed', pathMatch: 'full' },
+  { path: 'covid19/:status', component: ContaminatedGraphComponent },
 ];
 
 @NgModule({
