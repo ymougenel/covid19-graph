@@ -11,7 +11,7 @@ import {LoggerConfig} from "./services/logger/logger.config";
   declarations: [],
   providers: [
     LoggerService,
-    ,{
+    {
       provide: LoggerConfig, useValue: environment.logger
     }
 
