@@ -7,9 +7,10 @@ import {Region} from "../../models/Region";
 @Injectable()
 export class FormatterService {
 
-  constructor(private messageService: MessageService, private LOGGER: LoggerService) {
-  }
+    constructor(private messageService: MessageService, private LOGGER: LoggerService) {
+    }
 
+    visibleRegions = ['France', 'Italy', 'Iran', 'US', 'Spain'];
 
     formatDate(mmddYY: string): Date {
         let mm_dd_YY = mmddYY.split('/');
@@ -21,12 +22,17 @@ export class FormatterService {
     }
 
     formatLabel(region: Region): String {
-        if(region.province) {
+        if (region.province) {
             return region.country + '/' + region.province;
         }
         else {
             return region.country;
         }
+    }
+
+
+    isHidden(region: Region): boolean {
+        return !(this.visibleRegions.includes(region.country) && region.province == '');
     }
 
 }
