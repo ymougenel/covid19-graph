@@ -32,7 +32,8 @@ export class ContaminatedGraphComponent implements OnInit {
     }
 
     fetchData(): void {
-        this.dataService.getMockedConfirmedCases()
+        const status = this.route.snapshot.paramMap.get('status');
+        this.dataService.getData(status)
             .subscribe(csv => {
                 this.dates = this.mapperService.mapCsvToDates(csv);
                 this.regions = this.mapperService.mapCsvToRegions(csv);
