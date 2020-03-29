@@ -5,4 +5,4 @@ COPY ./docker/nginx.conf /etc/nginx/conf.d/
 
 RUN rm -rf /usr/share/nginx/html/*
 
-COPY ./dist/covid /usr/share/nginx/html
+COPY ./dist/covid19 /usr/share/nginx/html
