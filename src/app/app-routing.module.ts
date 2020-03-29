@@ -1,16 +1,16 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import {GraphComponent} from "./graph/graph.component";
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
+import {GraphComponent} from './graph/graph.component';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/covid19/toto', pathMatch: 'full' },
-  { path: 'covid19/:status', component: GraphComponent },
-  // { path: 'covid19/:status', component: GraphComponent },
+    {path: '', redirectTo: '/covid19/confirmed', pathMatch: 'full'},
+    {path: 'covid19/:status', component: GraphComponent},
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
