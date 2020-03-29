@@ -30,7 +30,7 @@ export class MapperService {
     mapCsvToRegions(csv: String): Region[] {
         let lines = csv.split("\n");
         let regions: Region[] = [];
-        for (let i = 1; i < lines.length; i++) {
+        for (let i = 1; i < lines.length - 1; i++) {
             regions.push(this.mapRegion(lines[i]));
         }
         return regions;
