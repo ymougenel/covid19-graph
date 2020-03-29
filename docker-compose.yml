@@ -1,0 +1,11 @@
+version: '3.5'
+
+services:
+  covid-nginx:
+    image: slonepi/covid19:0.0.0
+    container_name: covid19-nginx
+    build:
+      dockerfile: docker/Dockerfile
+      context: ./
+    ports:
+      - 8096:80
