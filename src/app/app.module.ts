@@ -23,10 +23,10 @@ import {MapperService} from "./core/services/mapper.service";
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule,
     ChartsModule,
     CoreModule,
     HttpClientModule,
+    AppRoutingModule,
   ],
   providers: [MessageService, DataService, FormatterService, MapperService],
   bootstrap: [AppComponent]

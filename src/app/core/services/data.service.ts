@@ -36,6 +36,7 @@ export class DataService {
     }
 
     getData(status: String): Observable<String> {
+        console.log("get data from status:" + status);
         if (status == "confirmed") {
             return this.getConfirmedCases();
         } else if (status == "deaths") {
