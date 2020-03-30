@@ -18,7 +18,7 @@ export class FormatterService {
         let mm = mm_dd_YY[0];
         let dd = mm_dd_YY[1];
         let YY = mm_dd_YY[2];
-        return new Date(parseInt(YY), parseInt(mm), parseInt(dd));
+        return new Date(parseInt(YY), parseInt(mm) - 1, parseInt(dd));
 
     }
 
