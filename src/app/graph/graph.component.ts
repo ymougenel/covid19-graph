@@ -43,8 +43,8 @@ export class GraphComponent implements OnInit {
 
     createGraph() {
         this.lineChartLabels = this.dates;
-        let yaxis = [];
-        let formatter = this.formatterService;
+        const yaxis = [];
+        const formatter = this.formatterService;
         this.regions.forEach(function (region: Region) {
             if (formatter.isVisible(region)) {
                 yaxis.push({data: region.values, label: formatter.formatLabel(region), hidden: formatter.isHidden(region)});
