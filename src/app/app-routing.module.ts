@@ -4,8 +4,8 @@ import {GraphComponent} from './graph/graph.component';
 
 
 const routes: Routes = [
-    {path: '', redirectTo: '/covid19/confirmed', pathMatch: 'full'},
-    {path: 'covid19/:status', component: GraphComponent},
+    {path: '', redirectTo: '/graph/confirmed', pathMatch: 'full'},
+    {path: 'graph/:status', component: GraphComponent},
 ];
 
 @NgModule({
