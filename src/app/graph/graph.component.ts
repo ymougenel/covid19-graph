@@ -4,7 +4,6 @@ import {DataService} from '../services/data.service';
 import {FormatterService} from '../services/formatter.service';
 import {Region} from '../modeles/Region';
 import {MapperService} from '../services/mapper.service';
-import {faCoffee} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'app-graph',
@@ -19,7 +18,6 @@ export class GraphComponent implements OnInit {
     public lineChartLabels: Array<any> = [];
     dataAvailable = false;
     status: String;
-    faCoffee = faCoffee;
 
     constructor(
         private route: ActivatedRoute,
