@@ -7,9 +7,9 @@ COPY . .
 RUN npm install -g @angular/cli@latest
 RUN ng build --prod  --deploy-url 'covid19/'
 RUN mkdir dist/covid19/covid19
-RUN cp dist/*.js dist/covid19/
-RUN cp dist/favicon.ico dist/covid19/
-RUN cp dist/*.css dist/covid19/
+RUN cp dist/covid19/*.js dist/covid19/covid19/
+RUN cp dist/covid19/favicon.ico dist/covid19/covid19/
+RUN cp dist/covid19/*.css dist/covid19/covid19/
 
 ### WEB SERVER STAGE
 FROM nginx:1.17.9-alpine
