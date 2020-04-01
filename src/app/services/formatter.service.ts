@@ -10,8 +10,8 @@ export class FormatterService {
     constructor() {
     }
 
-    displayedRegions = ['France', 'France/Mayotte', 'Italy', 'Iran', 'US', 'Spain', 'United Kingdom', 'China/Hubei', 'Netherlands', 'Germany', 'Belgium', 'Austria', 'Brazil', 'Canada/Quebec', 'Chile', 'Czechia', 'Equador','Denmark', 'Japan', 'Korea, South', 'Sweden', 'Nroway', 'Switzerland', 'Canade/Ontario'];
-    activeRegions = ['France', 'Italy', 'Iran', 'US', 'Spain'];
+    displayedRegions = ['France', 'Iran', 'Italy', 'US', 'Spain', 'United Kingdom', 'China/Hubei', 'Netherlands', 'Germany', 'Belgium', 'Austria', 'Brazil', 'Japan', 'Korea, South', 'Sweden', 'Norway', 'Switzerland'];
+    activeRegions = ['France', 'Iran', 'US', 'Spain', 'Italy'];
 
     // Transform string date month/day/year to Date
     formatDate(mmddYY: String): Date {
@@ -23,16 +23,6 @@ export class FormatterService {
 
     }
 
-    formatLabel(region: Region): string {
-        if (region.province) {
-            return region.country + '/' + region.province;
-        }
-        else {
-            return region.country;
-        }
-    }
-
-
     // Return if graph is hidden by default
     isHidden(region: Region): boolean {
         return !(this.activeRegions.includes(region.country) && region.province === '');
@@ -41,6 +31,6 @@ export class FormatterService {
     // Return is country should be displayed
     // Only major affected countries are shown by default
     isVisible(region: Region): boolean {
-        return this.displayedRegions.includes(this.formatLabel(region));
+        return this.displayedRegions.includes(region.name);
     }
 }

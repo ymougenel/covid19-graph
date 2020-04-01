@@ -13,11 +13,12 @@ import {MapperService} from '../services/mapper.service';
 export class GraphComponent implements OnInit {
 
     regions: Region[] = [];
+    addedRegion: Region;
     dates: Date[] = [];
     public lineChartData: Array<any> = [];
     public lineChartLabels: Array<any> = [];
     dataAvailable = false;
-    status: String;
+    status: string;
 
     constructor(
         private route: ActivatedRoute,
@@ -45,9 +46,9 @@ export class GraphComponent implements OnInit {
         this.lineChartLabels = this.dates;
         const yaxis = [];
         const formatter = this.formatterService;
-        this.regions.forEach(function (region: Region) {
+        this.regions.forEach((region: Region) => {
             if (formatter.isVisible(region)) {
-                yaxis.push({data: region.values, label: formatter.formatLabel(region), hidden: formatter.isHidden(region)});
+                yaxis.push({data: region.values, label: region.name, hidden: formatter.isHidden(region)});
 
             }
         });
@@ -57,6 +58,9 @@ export class GraphComponent implements OnInit {
 
     public lineChartOptions: any = {
         responsive: true,
+        legend: {
+            position: 'right'
+        },
         scales: {
             yAxes: [
                 {
@@ -107,5 +111,9 @@ export class GraphComponent implements OnInit {
         console.log(e);
     }
 
-
+    public addRegion(selection) {
+        console.log(selection);
+        const region = this.regions.find(region => region.name === selection);
+        this.lineChartData.push({data: region.values, label: region.name, hidden: false});
+    }
 }

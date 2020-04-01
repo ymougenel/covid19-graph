@@ -16,6 +16,7 @@ export class MapperService {
         line = line.split(',');
         region.province = line[0];
         region.country = line[1];
+        region.name = (region.province ? region.country + '/' + region.province : region.country);
         region.latitude = line[2];
         region.longitude = line[3];
         region.values = line.slice(4, line.length);

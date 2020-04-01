@@ -7,7 +7,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {ChartsModule} from 'ng2-charts';
 import {FaIconLibrary, FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {faStackOverflow, faGithub, faMedium} from '@fortawesome/free-brands-svg-icons';
-
+import { FormsModule } from '@angular/forms';
 @NgModule({
     declarations: [
         AppComponent,
@@ -17,6 +17,7 @@ import {faStackOverflow, faGithub, faMedium} from '@fortawesome/free-brands-svg-
         BrowserModule,
         FontAwesomeModule,
         ChartsModule,
+        FormsModule,
         HttpClientModule,
         AppRoutingModule,
         FontAwesomeModule

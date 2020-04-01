@@ -1,9 +1,39 @@
 <div class="contaminated-dashboard">
   <!-- Toolbar -->
+  <div class="content" role="main">
+    <h1>{{status}}</h1>
+      <div><span id="add_country">Add country</span>
+    <select  [ngModel]="addedRegion" (ngModelChange)="addRegion($event)">
+      <option *ngFor="let region of regions" [value]="region.name" >{{region.name}}</option>
+    </select>
+      </div>
+    <div *ngIf="dataAvailable" style="display: block;">
+      <canvas id="line"
+              class="chart chart-line"
+              chart-data="data"
+              chart-labels="labels"
+              chart-series="series"
+              chart-options="options"
+              chart-dataset-override="datasetOverride"
+              chart-click="onClick">
+      </canvas>
+      <canvas baseChart width="1500" height="900"
+              [datasets]="lineChartData"
+              [labels]="lineChartLabels"
+              [options]="lineChartOptions"
+              [colors]="lineChartColors"
+              [legend]="lineChartLegend"
+              [chartType]="lineChartType"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)">
+      </canvas>
+    </div>
+  </div>
+
   <div class="toolbar" role="banner">
     <img
       width="40"
-      alt="Angular Logo"
+      alt="Logo"
       src="assets/covid.png"
     />
     <a href="/graph/confirmed">Confirmed</a>
@@ -13,29 +43,4 @@
     <a aria-label="Github project" target="_blank" rel="noopener" href="https://github.com/ymougenel/covid19-graph" title="Github" id="github-logo">
       <fa-icon [icon]="['fab', 'github']" size="2x"></fa-icon>    </a>
   </div>
-
-  <div class="content" role="main">
-    <h1>{{status}}</h1>
-  <div *ngIf="dataAvailable" style="display: block;">
-    <canvas id="line"
-            class="chart chart-line"
-            chart-data="data"
-            chart-labels="labels"
-            chart-series="series"
-            chart-options="options"
-            chart-dataset-override="datasetOverride"
-            chart-click="onClick">
-    </canvas>
-    <canvas baseChart width="1500" height="900"
-            [datasets]="lineChartData"
-            [labels]="lineChartLabels"
-            [options]="lineChartOptions"
-            [colors]="lineChartColors"
-            [legend]="lineChartLegend"
-            [chartType]="lineChartType"
-            (chartHover)="chartHovered($event)"
-            (chartClick)="chartClicked($event)">
-    </canvas>
-  </div>
-</div>
 </div>
