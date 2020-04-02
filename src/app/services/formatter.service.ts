@@ -10,7 +10,7 @@ export class FormatterService {
     constructor() {
     }
 
-    displayedRegions = ['France', 'Iran', 'Italy', 'US', 'Spain', 'United Kingdom', 'China/Hubei', 'Netherlands', 'Germany', 'Belgium', 'Austria', 'Brazil', 'Japan', 'Korea, South', 'Sweden', 'Norway', 'Switzerland'];
+    displayedRegions = ['France', 'Iran', 'Italy', 'US', 'Spain', 'United Kingdom', 'China/Hubei', 'Netherlands', 'Germany', 'Belgium', 'Japan'];
     activeRegions = ['France', 'Iran', 'US', 'Spain', 'Italy'];
 
     // Transform string date month/day/year to Date

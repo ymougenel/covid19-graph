@@ -10,6 +10,7 @@ RUN mkdir dist/covid19/covid19
 RUN cp dist/covid19/*.js dist/covid19/covid19/
 RUN cp dist/covid19/favicon.ico dist/covid19/covid19/
 RUN cp dist/covid19/*.css dist/covid19/covid19/
+RUN cp -r dist/covid19/assets/ dist/covid19/covid19/
 
 ### WEB SERVER STAGE
 FROM nginx:1.17.9-alpine
