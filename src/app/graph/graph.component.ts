@@ -4,7 +4,6 @@ import {DataService} from '../services/data.service';
 import {FormatterService} from '../services/formatter.service';
 import {Region} from '../modeles/Region';
 import {MapperService} from '../services/mapper.service';
-import {faCoffee} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'app-graph',
@@ -14,12 +13,12 @@ import {faCoffee} from '@fortawesome/free-solid-svg-icons';
 export class GraphComponent implements OnInit {
 
     regions: Region[] = [];
+    addedRegion: Region;
     dates: Date[] = [];
     public lineChartData: Array<any> = [];
     public lineChartLabels: Array<any> = [];
     dataAvailable = false;
-    status: String;
-    faCoffee = faCoffee;
+    status: string;
 
     constructor(
         private route: ActivatedRoute,
@@ -45,11 +44,11 @@ export class GraphComponent implements OnInit {
 
     createGraph() {
         this.lineChartLabels = this.dates;
-        let yaxis = [];
-        let formatter = this.formatterService;
-        this.regions.forEach(function (region: Region) {
+        const yaxis = [];
+        const formatter = this.formatterService;
+        this.regions.forEach((region: Region) => {
             if (formatter.isVisible(region)) {
-                yaxis.push({data: region.values, label: formatter.formatLabel(region), hidden: formatter.isHidden(region)});
+                yaxis.push({data: region.values, label: region.name, hidden: formatter.isHidden(region)});
 
             }
         });
@@ -59,6 +58,9 @@ export class GraphComponent implements OnInit {
 
     public lineChartOptions: any = {
         responsive: true,
+        legend: {
+            position: 'right'
+        },
         scales: {
             yAxes: [
                 {
@@ -79,23 +81,6 @@ export class GraphComponent implements OnInit {
         }
     };
     public lineChartColors: Array<any> = [
-        { // grey
-            backgroundColor: 'rgba(148,159,177,0.2)',
-            borderColor: 'rgba(148,159,177,1)',
-            pointBackgroundColor: 'rgba(148,159,177,1)',
-            pointBorderColor: '#fff',
-            pointHoverBackgroundColor: '#fff',
-            pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-        }
-        // },
-        // { // dark grey
-        //     backgroundColor: 'rgba(77,83,96,0.2)',
-        //     borderColor: 'rgba(77,83,96,1)',
-        //     pointBackgroundColor: 'rgba(77,83,96,1)',
-        //     pointBorderColor: '#fff',
-        //     pointHoverBackgroundColor: '#fff',
-        //     pointHoverBorderColor: 'rgba(77,83,96,1)'
-        // },
     ];
     public lineChartLegend: boolean = true;
     public lineChartType: string = 'line';
@@ -109,5 +94,9 @@ export class GraphComponent implements OnInit {
         console.log(e);
     }
 
-
+    public addRegion(selection) {
+        console.log(selection);
+        const region = this.regions.find(region => region.name === selection);
+        this.lineChartData.push({data: region.values, label: region.name, hidden: false});
+    }
 }

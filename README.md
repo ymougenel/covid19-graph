@@ -1,27 +1,32 @@
-# Covid19
+# Covid19 Graph
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.1.0.
+Covid19 graph is a humble project, aiming at displaying daily updated data regarding the disease.
 
-## Development server
+Data are collected from the [Johns Hopkins University CSSE](https://github.com/CSSEGISandData/COVID-19) project.
+
+## Disclaimer
+
+I do not have any professional experience regarding the DataViz field, therefore **no conclusive deduction** can be made out of the graphs.
+
+The corona virus is a deadly threat that can not be to lightly! Therefore any **data comparative deduction should be using professional tools**, such as:
+* https://www.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6
+* https://www.ft.com/coronavirus-latest
+* https://healthmap.org/covid-19/
+
+## Contribute
+
+Well, thank you, but please don't: many [great projects](https://github.blog/2020-03-23-open-collaboration-on-covid-19/) are currently fighting the virus and need your help more than I do.
+
+## Development
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Deployment
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Run `docker-compose up --build` to run a nginx server.
 
-## Build
+_*Note:*_ The server file structure is quite touchy, since I struggle to make it work behind a Ha-proxy Load balancer.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## License
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Code is under [MIT license](LICENSE).

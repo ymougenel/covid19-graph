@@ -1,41 +1,50 @@
 <div class="contaminated-dashboard">
   <!-- Toolbar -->
-  <div class="toolbar" role="banner">
-    <img
-      width="40"
-      alt="Angular Logo"
-      src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
-    />
-    <a href="/covid19/confirmed">Confirmed</a>
-    <a href="/covid19/deaths">Deaths</a>
-    <a href="/covid19/recovered">Recovered</a>
-    <div class="spacer"></div>
-    <a aria-label="Angular on twitter" target="_blank" rel="noopener" href="https://twitter.com/angular" title="Twitter">
-    </a>
+  <div class="content" role="main">
+    <h1>{{status | uppercase}}</h1>
+      <div><span id="add_country">Add country</span>
+    <select  [ngModel]="addedRegion" (ngModelChange)="addRegion($event)">
+      <option *ngFor="let region of regions" [value]="region.name" >{{region.name}}</option>
+    </select>
+      </div>
+    <div *ngIf="dataAvailable" style="display: block;">
+      <canvas id="line"
+              class="chart chart-line"
+              chart-data="data"
+              chart-labels="labels"
+              chart-series="series"
+              chart-options="options"
+              chart-dataset-override="datasetOverride"
+              chart-click="onClick">
+      </canvas>
+      <canvas baseChart width="1500" height="900"
+              [datasets]="lineChartData"
+              [labels]="lineChartLabels"
+              [options]="lineChartOptions"
+              [colors]="lineChartColors"
+              [legend]="lineChartLegend"
+              [chartType]="lineChartType"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)">
+      </canvas>
+    </div>
   </div>
 
-  <div class="content" role="main">
-    <h1>{{status}}</h1>
-  <div *ngIf="dataAvailable" style="display: block;">
-    <canvas id="line"
-            class="chart chart-line"
-            chart-data="data"
-            chart-labels="labels"
-            chart-series="series"
-            chart-options="options"
-            chart-dataset-override="datasetOverride"
-            chart-click="onClick">
-    </canvas>
-    <canvas baseChart width="1500" height="900"
-            [datasets]="lineChartData"
-            [labels]="lineChartLabels"
-            [options]="lineChartOptions"
-            [colors]="lineChartColors"
-            [legend]="lineChartLegend"
-            [chartType]="lineChartType"
-            (chartHover)="chartHovered($event)"
-            (chartClick)="chartClicked($event)">
-    </canvas>
+  <div class="toolbar" role="banner">
+    <fa-icon [icon]="['fas', 'virus']" size="2x"></fa-icon>
+    <!--<img-->
+      <!--width="40"-->
+      <!--alt="Logo"-->
+      <!--src="assets/covid19/covid.png"-->
+    <!--/>-->
+    <a href="/covid19/graph/confirmed">Confirmed</a>
+    <a href="/covid19/graph/deaths">Deaths</a>
+    <a href="/covid19/graph/recovered">Recovered</a>
+    <div class="spacer"></div>
+    <span class="disclaimer">      <fa-icon [icon]="['fas', 'exclamation-triangle']" size="s"></fa-icon>Graphs must not be use for deductive conclusion... <a href="https://github.com/ymougenel/covid19-graph/blob/master/README.md#disclaimer" >more</a></span>
+    <div class="spacer"></div>
+    <a aria-label="Github project" target="_blank" rel="noopener" href="https://github.com/ymougenel/covid19-graph" title="Github" id="github-logo">
+      <fa-icon [icon]="['fab', 'github']" size="2x"></fa-icon>    </a>
   </div>
-</div>
+
 </div>
