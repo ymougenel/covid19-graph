@@ -1,6 +1,8 @@
 # Covid19 Graph
 
-Covid19 graph is a humble project, aiming at displaying updated data regarding  the disease.
+Covid19 graph is a humble project, aiming at displaying daily updated data regarding the disease.
+
+Data are collected from the [Johns Hopkins University CSSE](https://github.com/CSSEGISandData/COVID-19) project.
 
 ## Disclaimer
 
@@ -26,3 +28,5 @@ Run `docker-compose up --build` to run a nginx server.
 _*Note:*_ The server file structure is quite touchy, since I struggle to make it work behind a Ha-proxy Load balancer.
 
 ## License
+
+Code is under [MIT license](LICENSE).
