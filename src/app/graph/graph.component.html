@@ -8,16 +8,8 @@
     </select>
       </div>
     <div *ngIf="dataAvailable" style="display: block;">
-      <canvas id="line"
-              class="chart chart-line"
-              chart-data="data"
-              chart-labels="labels"
-              chart-series="series"
-              chart-options="options"
-              chart-dataset-override="datasetOverride"
-              chart-click="onClick">
-      </canvas>
-      <canvas baseChart width="1500" height="900"
+      <div class="wrapper col-2">
+      <canvas baseChart width="1500" height="850"
               [datasets]="lineChartData"
               [labels]="lineChartLabels"
               [options]="lineChartOptions"
@@ -27,6 +19,7 @@
               (chartHover)="chartHovered($event)"
               (chartClick)="chartClicked($event)">
       </canvas>
+      </div>
     </div>
   </div>
 
