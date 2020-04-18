@@ -4,6 +4,7 @@ import {DataService} from '../services/data.service';
 import {FormatterService} from '../services/formatter.service';
 import {Region} from '../modeles/Region';
 import {MapperService} from '../services/mapper.service';
+import {GraphConfig} from './graph.config';
 
 @Component({
     selector: 'app-graph',
@@ -19,6 +20,7 @@ export class GraphComponent implements OnInit {
     public lineChartLabels: Array<any> = [];
     dataAvailable = false;
     status: string;
+    graphConfig: GraphConfig = new GraphConfig();
 
     constructor(
         private route: ActivatedRoute,
@@ -56,47 +58,12 @@ export class GraphComponent implements OnInit {
         this.dataAvailable = true;
     }
 
-    public lineChartOptions: any = {
-        responsive: true,
-        legend: {
-            position: 'right'
-        },
-        scales: {
-            yAxes: [
-                {
-                    id: 'y-axis-1',
-                    type: 'linear',
-                    display: true,
-                    position: 'left'
-                }
-            ],
-            xAxes: [
-                {
-                    type: 'time',
-                    time: {
-                        unit: 'day'
-                    }
-                }
-            ]
-        }
-    };
-    public lineChartColors: Array<any> = [
-    ];
-    public lineChartLegend: boolean = true;
-    public lineChartType: string = 'line';
 
-    // events
-    public chartClicked(e: any): void {
-        console.log(e);
-    }
-
-    public chartHovered(e: any): void {
-        console.log(e);
-    }
 
     public addRegion(selection) {
-        console.log(selection);
         const region = this.regions.find(region => region.name === selection);
         this.lineChartData.push({data: region.values, label: region.name, hidden: false});
+        this.graphConfig.lineChartColors.push(this.graphConfig.lineChartColors[this.lineChartData.length]);
     }
+
 }
