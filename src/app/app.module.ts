@@ -7,8 +7,9 @@ import {HttpClientModule} from '@angular/common/http';
 import {ChartsModule} from 'ng2-charts';
 import {FaIconLibrary, FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {faGithub} from '@fortawesome/free-brands-svg-icons';
-import { FormsModule } from '@angular/forms';
-import {faExclamationTriangle, faVirus} from '@fortawesome/free-solid-svg-icons';
+import {FormsModule} from '@angular/forms';
+import {faExclamationTriangle, faVirus, faUndo, faMobileAlt} from '@fortawesome/free-solid-svg-icons';
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -27,6 +28,6 @@ import {faExclamationTriangle, faVirus} from '@fortawesome/free-solid-svg-icons'
 })
 export class AppModule {
     constructor(private library: FaIconLibrary) {
-        library.addIcons(faGithub, faVirus, faExclamationTriangle);
+        library.addIcons(faGithub, faVirus, faExclamationTriangle, faUndo, faMobileAlt);
     }
 }
