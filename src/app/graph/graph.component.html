@@ -1,52 +1,67 @@
 <div class="contaminated-dashboard">
-  <div class="toolbar" role="banner">
-    <fa-icon [icon]="['fas', 'virus']" size="2x"></fa-icon>
-    <!--<img-->
-    <!--width="40"-->
-    <!--alt="Logo"-->
-    <!--src="assets/covid19/covid.png"-->
-    <!--/>-->
-    <a href="/covid19/graph/confirmed">Confirmed</a>
-    <a href="/covid19/graph/deaths">Deaths</a>
-    <a href="/covid19/graph/recovered">Recovered</a>
-    <div class="spacer"></div>
-    <span class="disclaimer">      <fa-icon [icon]="['fas', 'exclamation-triangle']" size="s"></fa-icon>Graphs must not be use for deductive conclusion... <a href="https://github.com/ymougenel/covid19-graph/blob/master/README.md#disclaimer" >more</a></span>
-    <div class="spacer"></div>
-    <a aria-label="Github project" target="_blank" rel="noopener" href="https://github.com/ymougenel/covid19-graph" title="Github" id="github-logo">
-      <fa-icon [icon]="['fab', 'github']" size="2x"></fa-icon>    </a>
-  </div>
-  <!-- Cellphone Portrait warning -->
-  <div id="cellphone-portrait">
-    <h3>Please rotate your device to landscape</h3>
-    <div id="rotate-icons">
-      <fa-icon [icon]="['fas', 'mobile-alt']" flip="horizontal" size="4x"></fa-icon>
-      <fa-icon [icon]="['fas', 'undo']" flip="horizontal" size="4x"></fa-icon>
+    <div class="toolbar" role="banner">
+        <fa-icon [icon]="['fas', 'virus']" size="2x"></fa-icon>
+        <!--<img-->
+        <!--width="40"-->
+        <!--alt="Logo"-->
+        <!--src="assets/covid19/covid.png"-->
+        <!--/>-->
+        <a href="/covid19/graph/confirmed">Confirmed</a>
+        <a href="/covid19/graph/deaths">Deaths</a>
+        <a href="/covid19/graph/recovered">Recovered</a>
+        <div class="spacer"></div>
+        <span class="disclaimer">      <fa-icon [icon]="['fas', 'exclamation-triangle']" size="s"></fa-icon>Graphs must not be use for deductive conclusion... <a
+                href="https://github.com/ymougenel/covid19-graph/blob/master/README.md#disclaimer">more</a></span>
+        <div class="spacer"></div>
+        <a aria-label="Github project" target="_blank" rel="noopener" href="https://github.com/ymougenel/covid19-graph"
+           title="Github" id="github-logo">
+            <fa-icon [icon]="['fab', 'github']" size="2x"></fa-icon>
+        </a>
     </div>
-  </div>
-
-  <div class="content" role="main">
-    <h1>{{status | uppercase}}</h1>
-      <div><span id="add_country">Add country</span>
-        <select  [ngModel]="addedRegion" (ngModelChange)="addRegion($event)">
-          <option *ngFor="let region of regions" [value]="region.name" >{{region.name}}</option>
-        </select>
-      </div>
-    <div *ngIf="dataAvailable" style="display: block;">
-      <div class="chart-wrapper" style="display: block">
-      <canvas baseChart
-              [datasets]="lineChartData"
-              [labels]="lineChartLabels"
-              [options]="graphConfig.lineChartOptions"
-              [colors]="graphConfig.lineChartColors"
-              [legend]="graphConfig.lineChartLegend"
-              [chartType]="graphConfig.lineChartType"
-              (chartHover)="graphConfig.chartHovered($event)"
-              (chartClick)="graphConfig.chartClicked($event)">
-      </canvas>
-      </div>
+    <!-- Cellphone Portrait warning -->
+    <div id="cellphone-portrait">
+        <h3>Please rotate your device to landscape</h3>
+        <div id="rotate-icons">
+            <fa-icon [icon]="['fas', 'mobile-alt']" flip="horizontal" size="4x"></fa-icon>
+            <fa-icon [icon]="['fas', 'undo']" flip="horizontal" size="4x"></fa-icon>
+        </div>
     </div>
-  </div>
 
+    <div class="content" role="main">
+        <h1>{{status | uppercase}}</h1>
+        <div><span id="add_country">Add country</span>
+            <select [ngModel]="addedRegion" (ngModelChange)="addRegion($event)">
+                <option *ngFor="let region of regions" [value]="region.name">{{region.name}}</option>
+            </select>
+        </div>
+        <div *ngIf="dataAvailable" style="display: block;">
+            <div class="chart-wrapper" style="display: block">
+                <h2>Linear evolution</h2>
+                <canvas baseChart
+                [datasets]="lineChartData"
+                [labels]="lineChartLabels"
+                [options]="graphConfig.lineChartOptions"
+                [colors]="graphConfig.lineChartColors"
+                [legend]="graphConfig.lineChartLegend"
+                [chartType]="graphConfig.lineChartType"
+                (chartHover)="graphConfig.chartHovered($event)"
+                (chartClick)="graphConfig.chartClicked($event)">
+                </canvas>
+            </div>
+            <div class="chart-wrapper" style="display: block">
+                <h2>Daily new cases</h2>
+                <canvas baseChart
+                        [datasets]="barChartData"
+                        [labels]="lineChartLabels"
+                        [options]="graphConfig.barChartOptions"
+                        [legend]="graphConfig.lineChartLegend"
+                        [chartType]="graphConfig.barChartType"
+                        (chartHover)="graphConfig.chartHovered($event)"
+                        (chartClick)="graphConfig.chartClicked($event)">
+                </canvas>
+            </div>
+        </div>
+    </div>
 
 
 </div>

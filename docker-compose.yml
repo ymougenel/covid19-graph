@@ -2,7 +2,7 @@ version: '3.5'
 
 services:
   covid-nginx:
-    image: slonepi/covid19:1.4.0
+    image: slonepi/covid19:2.0.0
     container_name: covid19-nginx
     build:
       dockerfile: docker/Dockerfile

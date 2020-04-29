@@ -17,6 +17,7 @@ export class GraphComponent implements OnInit {
     addedRegion: Region;
     dates: Date[] = [];
     public lineChartData: Array<any> = [];
+    public barChartData: Array<any> = [];
     public lineChartLabels: Array<any> = [];
     dataAvailable = false;
     status: string;
@@ -46,15 +47,17 @@ export class GraphComponent implements OnInit {
 
     createGraph() {
         this.lineChartLabels = this.dates;
-        const yaxis = [];
+        const yLineAxis = [];
+        const yBarAxis = [];
         const formatter = this.formatterService;
         this.regions.forEach((region: Region) => {
             if (formatter.isVisible(region)) {
-                yaxis.push({data: region.values, label: region.name, hidden: formatter.isHidden(region)});
-
+                yLineAxis.push({data: region.values, label: region.name, hidden: formatter.isHidden(region)});
+                yBarAxis.push({data: formatter.transformIntoNewCases(region.values), label: region.name, hidden: formatter.isHidden(region)});
             }
         });
-        this.lineChartData = yaxis;
+        this.lineChartData = yLineAxis;
+        this.barChartData = yBarAxis;
         this.dataAvailable = true;
     }
 
@@ -63,6 +66,7 @@ export class GraphComponent implements OnInit {
     public addRegion(selection) {
         const region = this.regions.find(region => region.name === selection);
         this.lineChartData.push({data: region.values, label: region.name, hidden: false});
+        this.barChartData.push({data: this.formatterService.transformIntoNewCases(region.values), label: region.name, hidden: false});
         this.graphConfig.lineChartColors.push(this.graphConfig.lineChartColors[this.lineChartData.length]);
     }
 

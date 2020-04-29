@@ -1,3 +1,5 @@
+import {ChartOptions, ChartType} from 'chart.js';
+
 export class GraphConfig {
     lineChartOptions: any = {
         responsive: true,
@@ -159,4 +161,29 @@ export class GraphConfig {
             pointHoverBorderColor: 'rgba(77,83,96,1)'
         },
     ];
+
+    public barChartOptions: ChartOptions = {
+        responsive: true,
+
+        // We use these empty structures as placeholders for dynamic theming.
+        scales: { xAxes: [
+            {
+                type: 'time',
+                time: {
+                    unit: 'day'
+                }
+            }
+            ], yAxes: [{
+
+            }] },
+        plugins: {
+            datalabels: {
+                anchor: 'end',
+                align: 'end',
+            }
+        }
+    };
+
+    public barChartType: ChartType = 'bar';
+
 }

@@ -11,7 +11,7 @@ export class FormatterService {
     }
 
     displayedRegions = ['France', 'Iran', 'Italy', 'US', 'Spain', 'United Kingdom', 'China/Hubei', 'Netherlands', 'Germany', 'Belgium', 'Japan'];
-    activeRegions = ['France', 'Iran', 'US', 'Spain', 'Italy'];
+    activeRegions = ['France', 'US', 'Spain', 'Italy'];
 
     // Transform string date month/day/year to Date
     formatDate(mmddYY: String): Date {
@@ -32,5 +32,16 @@ export class FormatterService {
     // Only major affected countries are shown by default
     isVisible(region: Region): boolean {
         return this.displayedRegions.includes(region.name);
+    }
+
+    // Return the new cases array
+    // (ie: the subtraction between two consecutive days)
+    transformIntoNewCases(values: number[]): number[] {
+        const difValues = [values[0]];
+        var i;
+        for (i = 1; i < values.length; i += 1) {
+            difValues.push(values[i] - values[i - 1]);
+        }
+        return difValues;
     }
 }
