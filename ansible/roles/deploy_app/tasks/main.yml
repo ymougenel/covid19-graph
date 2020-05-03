@@ -1,0 +1,10 @@
+---
+- name: Run nginx
+  docker_container:
+    name: covid19-nginx
+    pull: yes
+    image: slonepi/covid19:latest
+    state: started
+    recreate: yes
+    ports:
+      - "8096:80"
