@@ -6,3 +6,4 @@ all:
 
   vars:
     ansible_user: centos
+    COVID_PORT: 4200
