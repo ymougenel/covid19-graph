@@ -30,3 +30,6 @@ _*Note:*_ The server file structure is quite touchy, since I struggle to make it
 ## License
 
 Code is under [MIT license](LICENSE).
+
+## TODO
+Angular update -> cd https://angular.dev/reference/versions
