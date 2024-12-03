@@ -4,7 +4,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {GraphComponent} from './graph/graph.component';
 import {HttpClientModule} from '@angular/common/http';
-import {NgChartsModule} from 'ng2-charts';
+import {ChartsModule} from 'ng2-charts';
 import {FaIconLibrary, FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {faGithub} from '@fortawesome/free-brands-svg-icons';
 import {FormsModule} from '@angular/forms';
@@ -18,7 +18,7 @@ import {faExclamationTriangle, faVirus, faUndo, faMobileAlt} from '@fortawesome/
     imports: [
         BrowserModule,
         FontAwesomeModule,
-        NgChartsModule,
+        ChartsModule,
         FormsModule,
         HttpClientModule,
         AppRoutingModule,
