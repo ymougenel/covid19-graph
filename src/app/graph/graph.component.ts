@@ -5,6 +5,7 @@ import {FormatterService} from '../services/formatter.service';
 import {Region} from '../modeles/Region';
 import {MapperService} from '../services/mapper.service';
 import {GraphConfig} from './graph.config';
+import {ChartConfiguration} from "chart.js";
 
 @Component({
     selector: 'app-graph',
@@ -22,6 +23,28 @@ export class GraphComponent implements OnInit {
     status: string;
     graphConfig: GraphConfig = new GraphConfig();
 
+    // see https://stackblitz.com/github/santam85/ng2-charts-line-template?file=src%2Fapp%2Fapp.component.ts&preset=node
+    public lineChartData2: ChartConfiguration<'line'>['data'] = {
+        // labels: [
+        //     'January',
+        //     'February',
+        //     'March',
+        //     'April',
+        //     'May',
+        //     'June',
+        //     'July'
+        // ],
+        datasets: []
+        //     {
+        //         data: [ 65, 59, 80, 81, 56, 55, 40 ],
+        //         label: 'Series A',
+        //         fill: true,
+        //         tension: 0.5,
+        //         borderColor: 'black',
+        //         backgroundColor: 'rgba(255,0,0,0.3)'
+        //     }
+        // ]
+    };
     constructor(
         private route: ActivatedRoute,
         private router: Router,
@@ -50,7 +73,7 @@ export class GraphComponent implements OnInit {
         const formatter = this.formatterService;
         this.regions.forEach((region: Region) => {
             if (formatter.isVisible(region)) {
-                yaxis.push({data: region.values, label: region.name, hidden: formatter.isHidden(region)});
+                this.lineChartData2.datasets.push({data: region.values, label: region.name, hidden: formatter.isHidden(region)});
 
             }
         });

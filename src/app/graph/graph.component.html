@@ -42,11 +42,11 @@
 <!--          [labels]="lineChartLabels"-->
 <!--TODO YANN-->
           <canvas baseChart
-              [data]="lineChartData"
-                  [type]="'line'"
-                    [legend]="graphConfig.lineChartLegend"
-                    [options]="graphConfig.lineChartOptions"
-                    [labels]="lineChartLabels"
+              [data]="lineChartData2"
+              [type]="'line'"
+              [legend]="graphConfig.lineChartLegend"
+              [options]="graphConfig.lineChartOptions"
+              [labels]="lineChartLabels"
               (chartHover)="graphConfig.chartHovered($event)"
               (chartClick)="graphConfig.chartClicked($event)">
       </canvas>
