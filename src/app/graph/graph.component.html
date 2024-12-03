@@ -33,13 +33,17 @@
       </div>
     <div *ngIf="dataAvailable" style="display: block;">
       <div class="chart-wrapper" style="display: block">
-      <canvas baseChart
-              [datasets]="lineChartData"
-              [labels]="lineChartLabels"
-              [options]="graphConfig.lineChartOptions"
-              [colors]="graphConfig.lineChartColors"
-              [legend]="graphConfig.lineChartLegend"
-              [chartType]="graphConfig.lineChartType"
+          <!--              [colors]="graphConfig.lineChartColors"-->
+          <!--              [chartType]="graphConfig.lineChartType"-->
+<!--          [legend]="graphConfig.lineChartLegend"-->
+<!--          [options]="graphConfig.lineChartOptions"-->
+<!--          [labels]="lineChartLabels"-->
+<!--TODO YANN-->
+          <canvas baseChart
+              [data]="lineChartData"
+
+
+
               (chartHover)="graphConfig.chartHovered($event)"
               (chartClick)="graphConfig.chartClicked($event)">
       </canvas>
