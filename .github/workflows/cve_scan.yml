@@ -1,0 +1,31 @@
+name: Angular CI/CD Pipeline
+
+
+on:
+  push:
+    branches: [ctf]
+  pull_request:
+    branches: [master]
+
+jobs:
+  scan_vulnerabilities:
+    runs-on: ubuntu-latest #TODO find smaller image
+
+    steps:
+      # Checkout the code
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '12.11.0'
+
+      # Scan with Trivy
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: fs
+          scan-ref: ./
+          severity: 'CRITICAL,HIGH'
